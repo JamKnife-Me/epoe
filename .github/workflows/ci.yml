@@ -1,0 +1,19 @@
+name: Deploy to game01
+on: [push]
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pulling changes from GitHub
+        uses: appleboy/ssh-action@master
+        with:
+          debug: true
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ${{ secrets.ADDONS_DIR }}
+            git pull
+            cp ./lua/bin/gmsv_enginespew_linux.dll ../../lua/modules/bin/
