@@ -16,4 +16,5 @@ jobs:
           script: |
             cd ${{ secrets.ADDONS_DIR }}
             git pull
+            mkdir -p ../../lua/modules/bin/
             cp ./lua/bin/gmsv_enginespew_linux.dll ../../lua/modules/bin/
